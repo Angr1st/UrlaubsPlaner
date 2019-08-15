@@ -57,12 +57,15 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Absence.sql" />
     <Build Include="Tables\AbsenceType.sql" />
     <Build Include="Tables\Country.sql" />
     <Build Include="Tables\Employee.sql" />
+    <Build Include="Views\AbsencesWithEmployeeAndAbsenceType.sql" />
+    <Build Include="Views\EmployeesWithCountry.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="UrlaubsplanerDB.refactorlog" />

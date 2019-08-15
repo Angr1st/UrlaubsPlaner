@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace UrlaubsPlaner.Entities
 {
-    public class AbsenceType
+    public class AbsenceType : IUpsertable
     {
         public Guid AbsenceTypeId { get; set; }
         public string Label { get; set; }
 
         public AbsenceType()
         {
+        }
+
+        public override string ToString()
+        {
+            return $"{Label}";
         }
     }
 }

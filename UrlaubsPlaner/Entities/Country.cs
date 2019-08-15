@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UrlaubsPlaner.Entities
 {
-    public class Country
+    public class Country : IEntity
     {
         public Guid CountryId { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,11 @@ namespace UrlaubsPlaner.Entities
 
         public Country()
         {
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} - {Code}";
         }
     }
 }

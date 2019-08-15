@@ -3,7 +3,7 @@ using UrlaubsPlaner.Entities;
 
 namespace UrlaubsPlaner.Entities
 {
-    public class Employee
+    public class Employee : IUpsertable
     {
         public Guid EmployeeId { get; set; }
         public int EmployeeNumber { get; set; }
@@ -20,6 +20,11 @@ namespace UrlaubsPlaner.Entities
 
         public Employee()
         {
+        }
+
+        public override string ToString()
+        {
+            return $"{EmployeeNumber} - {Lastname}";
         }
     }
 }
