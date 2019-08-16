@@ -166,10 +166,17 @@ namespace UrlaubsPlaner
         {
             txtbx_id.Text = string.Empty;
             cbx_employee.SelectedItem = null;
+            cbx_employee.Text = string.Empty;
+
+            textbox_firstname.Text = string.Empty;
+            textbox_lastname.Text = string.Empty;
+
             cbx_absencetype.SelectedItem = null;
+            cbx_absencetype.Text = string.Empty;
             richtextbox_reason.Text = string.Empty;
             dtp_from.Value = (DateTime.Now);
             dtp_to.Value = (DateTime.Now);
+            listview_event.SelectedItems.Clear();
         }
 
         private void Button_save_Click(object sender, EventArgs e)
