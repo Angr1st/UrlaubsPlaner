@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using UrlaubsPlaner.DBInteraction;
 using UrlaubsPlaner.Entities;
 
-namespace UrlaubsPlaner
+namespace UrlaubsPlaner.Controller
 {
-    public partial class Form_Main : Form
+    public class Main_FormController
     {
         private bool IsInsert = true;
         private List<Absence> Absences;
@@ -20,11 +15,15 @@ namespace UrlaubsPlaner
         private List<Employee> Employees;
         private readonly Employee_Form Employee_Form;
         private readonly AbsenceType_Form AbsenceType_Form;
+        private readonly Main_Form Main_Form;
 
 
-        public Form_Main()
+        public Main_FormController()
         {
-            InitializeComponent();
+            Main_Form = new Main_Form();
+
+            Main_Form.Load += new System.EventHandler(this.Form_MainLoad);
+            Main_Form.Controls.Find(.listview_event.SelectedIndexChanged += new System.EventHandler(this.Listview_event_SelectedIndexChanged);
 
             Employee_Form = new Employee_Form();
             Employee_Form.VisibleChanged += ShowFormAgain;
@@ -109,9 +108,9 @@ namespace UrlaubsPlaner
             }
             else
             {
-            var employee = CbxAsEmployee(cbx_employee);
-            textbox_firstname.Text = employee.Firstname;
-            textbox_lastname.Text = employee.Lastname;
+                var employee = CbxAsEmployee(cbx_employee);
+                textbox_firstname.Text = employee.Firstname;
+                textbox_lastname.Text = employee.Lastname;
             }
 
             Employee CbxAsEmployee(ComboBox box)

@@ -1,6 +1,6 @@
 ﻿namespace UrlaubsPlaner
 {
-    partial class Form_Main
+    partial class Main_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.gp_calendar = new System.Windows.Forms.GroupBox();
             this.listview_event = new System.Windows.Forms.ListView();
             this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -92,7 +92,6 @@
             this.listview_event.TabIndex = 0;
             this.listview_event.UseCompatibleStateImageBehavior = false;
             this.listview_event.View = System.Windows.Forms.View.Details;
-            this.listview_event.SelectedIndexChanged += new System.EventHandler(this.Listview_event_SelectedIndexChanged);
             // 
             // Id
             // 
@@ -359,7 +358,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Main";
             this.Text = "Urlaubsplaner";
-            this.Load += new System.EventHandler(this.Form_MainLoad);
             this.gp_calendar.ResumeLayout(false);
             this.gp_input.ResumeLayout(false);
             this.gp_input.PerformLayout();
