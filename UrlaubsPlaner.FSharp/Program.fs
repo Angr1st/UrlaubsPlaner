@@ -1,7 +1,10 @@
-﻿// Learn more about F# at http://fsharp.org
+﻿open System
+open System.Windows.Forms
+// Learn more about F# at http://fsharp.org
 // See the 'F# Tutorial' project for more help.
 
-[<EntryPoint>]
+[<EntryPoint; STAThread>]
 let main argv = 
-    printfn "%A" argv
+    Application.EnableVisualStyles()
+    Application.SetCompatibleTextRenderingDefault(false)
     0 // return an integer exit code
