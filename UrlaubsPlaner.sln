@@ -9,6 +9,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UrlaubsplanerDB", "Urlaubsp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlaubsPlanerForms", "UrlaubsPlanerForms\UrlaubsPlanerForms.csproj", "{8BC3C217-D584-44F5-8262-1D2121A3C54B}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "UrlaubsPlaner.FSharp", "UrlaubsPlaner.FSharp\UrlaubsPlaner.FSharp.fsproj", "{4C9CB2FF-C1FA-4457-B121-0A731CFD2868}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{8BC3C217-D584-44F5-8262-1D2121A3C54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BC3C217-D584-44F5-8262-1D2121A3C54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BC3C217-D584-44F5-8262-1D2121A3C54B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9CB2FF-C1FA-4457-B121-0A731CFD2868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9CB2FF-C1FA-4457-B121-0A731CFD2868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9CB2FF-C1FA-4457-B121-0A731CFD2868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9CB2FF-C1FA-4457-B121-0A731CFD2868}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
