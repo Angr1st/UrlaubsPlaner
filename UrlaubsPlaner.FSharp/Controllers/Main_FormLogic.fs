@@ -2,6 +2,6 @@
 
 open UrlaubsPlanerForms
 
-module Main_FormController
+module Main_FormLogic =
 
     let MainForm = new Main_Form()
