@@ -10,9 +10,8 @@ using UrlaubsPlanerForms;
 
 namespace UrlaubsPlaner.Controller
 {
-    public class Employee_FormController : IForm
+    public class Employee_FormController : UrlaubsPlaner_FormControllerBase, IForm
     {
-        private bool IsInsert = true;
         private List<Country> Countries;
         private List<Employee> Employees;
         private readonly Employee_Form Employee_Form;

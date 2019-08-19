@@ -10,9 +10,8 @@ using UrlaubsPlanerForms;
 
 namespace UrlaubsPlaner.Controller
 {
-    public class AbsenceType_FormController : IForm
+    public class AbsenceType_FormController : UrlaubsPlaner_FormControllerBase, IForm
     {
-        private bool IsInsert = true;
         private List<AbsenceType> AbsenceTypes;
         private readonly AbsenceType_Form AbsenceType_Form;
 

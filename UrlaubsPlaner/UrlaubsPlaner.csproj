@@ -61,6 +61,7 @@
     <Compile Include="Controller\Employee_FormController.cs" />
     <Compile Include="Controller\IForm.cs" />
     <Compile Include="Controller\Main_FormController.cs" />
+    <Compile Include="Controller\UrlaubsPlaner_FormControllerBase.cs" />
     <Compile Include="DBInteraction\AbsenceQuerys.cs" />
     <Compile Include="DBInteraction\AbsenceTypeQuerys.cs" />
     <Compile Include="DBInteraction\CountryQuerys.cs" />
