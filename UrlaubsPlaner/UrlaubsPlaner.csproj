@@ -63,6 +63,9 @@
     <Compile Include="AbsenceType_Form.Designer.cs">
       <DependentUpon>AbsenceType_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\AbsenceType_FormController.cs" />
+    <Compile Include="Controller\Employee_FormController.cs" />
+    <Compile Include="Controller\IForm.cs" />
     <Compile Include="Controller\Main_FormController.cs" />
     <Compile Include="DBInteraction\AbsenceQuerys.cs" />
     <Compile Include="DBInteraction\AbsenceTypeQuerys.cs" />

@@ -73,7 +73,6 @@
             this.cancelbtn.TabIndex = 0;
             this.cancelbtn.Text = "Abbrechen";
             this.cancelbtn.UseVisualStyleBackColor = true;
-            this.cancelbtn.Click += new System.EventHandler(this.Cancelbtn_Click);
             // 
             // employeeListView
             // 
@@ -91,7 +90,6 @@
             this.employeeListView.TabIndex = 1;
             this.employeeListView.UseCompatibleStateImageBehavior = false;
             this.employeeListView.View = System.Windows.Forms.View.Details;
-            this.employeeListView.SelectedIndexChanged += new System.EventHandler(this.EmployeeListView_SelectedIndexChanged);
             // 
             // employeeID
             // 
@@ -288,7 +286,6 @@
             this.btn_create.TabIndex = 22;
             this.btn_create.Text = "Erstellen";
             this.btn_create.UseVisualStyleBackColor = true;
-            this.btn_create.Click += new System.EventHandler(this.Btn_create_Click);
             // 
             // btn_clear
             // 
@@ -299,7 +296,6 @@
             this.btn_clear.Text = "Leeren";
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Visible = false;
-            this.btn_clear.Click += new System.EventHandler(this.Btn_clear_Click);
             // 
             // txtbx_id
             // 
@@ -375,7 +371,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Employee_Form";
             this.Text = "Employee_Form";
-            this.Load += new System.EventHandler(this.Employee_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,22 +378,22 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cancelbtn;
-        private System.Windows.Forms.ListView employeeListView;
+        public System.Windows.Forms.Button cancelbtn;
+        public System.Windows.Forms.ListView employeeListView;
         private System.Windows.Forms.ColumnHeader employeeID;
         private System.Windows.Forms.ColumnHeader employeeNr;
         private System.Windows.Forms.ColumnHeader countryCode;
         private System.Windows.Forms.ColumnHeader firstName;
         private System.Windows.Forms.ColumnHeader lastName;
         private System.Windows.Forms.ColumnHeader email;
-        private System.Windows.Forms.TextBox txtbx_firstname;
-        private System.Windows.Forms.TextBox txtbx_lastname;
-        private System.Windows.Forms.DateTimePicker dtm_birthday;
-        private System.Windows.Forms.TextBox txtbx_street;
-        private System.Windows.Forms.TextBox txtbx_housenumber;
-        private System.Windows.Forms.TextBox txtbx_postalcode;
-        private System.Windows.Forms.TextBox txtbx_city;
-        private System.Windows.Forms.TextBox txtbx_telefonnumber;
+        public System.Windows.Forms.TextBox txtbx_firstname;
+        public System.Windows.Forms.TextBox txtbx_lastname;
+        public System.Windows.Forms.DateTimePicker dtm_birthday;
+        public System.Windows.Forms.TextBox txtbx_street;
+        public System.Windows.Forms.TextBox txtbx_housenumber;
+        public System.Windows.Forms.TextBox txtbx_postalcode;
+        public System.Windows.Forms.TextBox txtbx_city;
+        public System.Windows.Forms.TextBox txtbx_telefonnumber;
         private System.Windows.Forms.Label lbl_firstname;
         private System.Windows.Forms.Label lbl_lastname;
         private System.Windows.Forms.Label lbl_birthday;
@@ -407,15 +402,15 @@
         private System.Windows.Forms.Label lbl_postalcode;
         private System.Windows.Forms.Label lbl_city;
         private System.Windows.Forms.Label lbl_telefonnumber;
-        private System.Windows.Forms.TextBox txtbx_email;
+        public System.Windows.Forms.TextBox txtbx_email;
         private System.Windows.Forms.Label lbl_email;
-        private System.Windows.Forms.ComboBox cbx_country;
+        public System.Windows.Forms.ComboBox cbx_country;
         private System.Windows.Forms.Label lbl_country;
-        private System.Windows.Forms.Button btn_create;
-        private System.Windows.Forms.Button btn_clear;
-        private System.Windows.Forms.TextBox txtbx_id;
-        private System.Windows.Forms.Label lbl_ID;
-        private System.Windows.Forms.Label lbl_number;
-        private System.Windows.Forms.TextBox txtbx_number;
+        public System.Windows.Forms.Button btn_create;
+        public System.Windows.Forms.Button btn_clear;
+        public System.Windows.Forms.TextBox txtbx_id;
+        public System.Windows.Forms.Label lbl_ID;
+        public System.Windows.Forms.Label lbl_number;
+        public System.Windows.Forms.TextBox txtbx_number;
     }
 }

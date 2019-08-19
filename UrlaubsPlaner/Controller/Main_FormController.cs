@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using UrlaubsPlaner.DBInteraction;
 using UrlaubsPlaner.Entities;
 
 namespace UrlaubsPlaner.Controller
@@ -13,25 +15,35 @@ namespace UrlaubsPlaner.Controller
         private List<Absence> Absences;
         private List<AbsenceType> AbsenceTypes;
         private List<Employee> Employees;
-        private readonly Employee_Form Employee_Form;
-        private readonly AbsenceType_Form AbsenceType_Form;
         private readonly Main_Form Main_Form;
-
+        private readonly Employee_FormController Employee_FormController;
+        private readonly AbsenceType_FormController AbsenceType_FormController;
 
         public Main_FormController()
         {
             Main_Form = new Main_Form();
 
             Main_Form.Load += new System.EventHandler(this.Form_MainLoad);
-            Main_Form.Controls.Find(.listview_event.SelectedIndexChanged += new System.EventHandler(this.Listview_event_SelectedIndexChanged);
+            Main_Form.listview_event.SelectedIndexChanged += new System.EventHandler(this.Listview_event_SelectedIndexChanged);
+            Main_Form.btn_clear.Click += new System.EventHandler(this.Btn_clear_Click);
+            Main_Form.cbx_employee.SelectedValueChanged += new System.EventHandler(this.Cbx_employee_SelectedValueChanged);
+            Main_Form.employeebtn.Click += new System.EventHandler(this.Employeebtn_Click);
+            Main_Form.absenceTypebtn.Click += new System.EventHandler(this.AbsenceTypebtn_Click);
+            Main_Form.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
+            Main_Form.button_save.Click += new System.EventHandler(this.Button_save_Click);
 
-            Employee_Form = new Employee_Form();
-            Employee_Form.VisibleChanged += ShowFormAgain;
-            Employee_Form.FormClosed += StopProgramm;
+            var employee_Form = new Employee_Form();
+            employee_Form.VisibleChanged += ShowFormAgain;
+            employee_Form.FormClosed += StopProgramm;
 
-            AbsenceType_Form = new AbsenceType_Form();
-            AbsenceType_Form.VisibleChanged += ShowFormAgain;
-            AbsenceType_Form.FormClosed += StopProgramm;
+            var absenceType_Form = new AbsenceType_Form();
+            absenceType_Form.VisibleChanged += ShowFormAgain;
+            absenceType_Form.FormClosed += StopProgramm;
+
+            Employee_FormController = new Employee_FormController(employee_Form);
+            AbsenceType_FormController = new AbsenceType_FormController(absenceType_Form);
+
+            Application.Run(Main_Form);
         }
 
         private void Form_MainLoad(object sender, EventArgs e)
@@ -41,15 +53,15 @@ namespace UrlaubsPlaner.Controller
 
         private void UpdateAllData()
         {
-            listview_event.Items.Clear();
-            cbx_absencetype.Items.Clear();
-            cbx_employee.Items.Clear();
+            Main_Form.listview_event.Items.Clear();
+            Main_Form.cbx_absencetype.Items.Clear();
+            Main_Form.cbx_employee.Items.Clear();
 
             Absences = DataBaseConnection.GetFullAbsences();
             AbsenceTypes = DataBaseConnection.GetAbsenceTypes();
             Employees = DataBaseConnection.GetEmployees();
 
-            listview_event.Items.AddRange(Absences.Select(x
+            Main_Form.listview_event.Items.AddRange(Absences.Select(x
                 => new ListViewItem(new string[]
                 {
                     x.AbsenceID.ToString(),
@@ -61,56 +73,56 @@ namespace UrlaubsPlaner.Controller
                     x.ToDate.ToString()
                 })).ToArray());
 
-            cbx_absencetype.Items.AddRange(AbsenceTypes.ToArray());
+            Main_Form.cbx_absencetype.Items.AddRange(AbsenceTypes.ToArray());
 
-            cbx_employee.Items.AddRange(Employees.ToArray());
+            Main_Form.cbx_employee.Items.AddRange(Employees.ToArray());
         }
 
         private void Employeebtn_Click(object sender, EventArgs e)
         {
-            Employee_Form.Show();
+            Employee_FormController.ShowForm();
         }
 
         private void AbsenceTypebtn_Click(object sender, EventArgs e)
         {
-            AbsenceType_Form.Show();
+            AbsenceType_FormController.ShowForm();
         }
 
         private void ShowFormAgain(object sender, EventArgs e)
         {
-            if (this.Visible)
+            if (Main_Form.Visible)
             {
-                this.Hide();
+                Main_Form.Hide();
             }
             else
             {
                 UpdateAllData();
-                this.Show();
+                Main_Form.Show();
             }
         }
 
         private void StopProgramm(object sender, EventArgs e)
         {
-            this.Close();
+            Main_Form.Close();
         }
 
         private void Button_cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Main_Form.Close();
         }
 
         private void Cbx_employee_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cbx_employee.SelectedItem == null)
+            if (Main_Form.cbx_employee.SelectedItem == null)
             {
-                textbox_firstname.Text = string.Empty;
-                textbox_lastname.Text = string.Empty;
+                Main_Form.textbox_firstname.Text = string.Empty;
+                Main_Form.textbox_lastname.Text = string.Empty;
             }
             else
             {
-                var employee = CbxAsEmployee(cbx_employee);
-                textbox_firstname.Text = employee.Firstname;
-                textbox_lastname.Text = employee.Lastname;
+                var employee = CbxAsEmployee(Main_Form.cbx_employee);
+                Main_Form.textbox_firstname.Text = employee.Firstname;
+                Main_Form.textbox_lastname.Text = employee.Lastname;
             }
 
             Employee CbxAsEmployee(ComboBox box)
@@ -125,16 +137,16 @@ namespace UrlaubsPlaner.Controller
 
         private void Listview_event_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listview_event.SelectedIndices.Count == 1)
+            if (Main_Form.listview_event.SelectedIndices.Count == 1)
             {
-                var index = listview_event.SelectedIndices[0];
+                var index = Main_Form.listview_event.SelectedIndices[0];
                 var selectedItem = Absences[index];
-                txtbx_id.Text = selectedItem.AbsenceID.ToString();
-                cbx_employee.SelectedItem = Employees.Find(x => x.EmployeeId == selectedItem.Employee.EmployeeId);
-                cbx_absencetype.SelectedItem = AbsenceTypes.Find(x => x.AbsenceTypeId == selectedItem.AbsenceType.AbsenceTypeId);
-                dtp_from.Value = selectedItem.FromDate;
-                dtp_to.Value = selectedItem.ToDate;
-                richtextbox_reason.Text = selectedItem.Reason;
+                Main_Form.txtbx_id.Text = selectedItem.AbsenceID.ToString();
+                Main_Form.cbx_employee.SelectedItem = Employees.Find(x => x.EmployeeId == selectedItem.Employee.EmployeeId);
+                Main_Form.cbx_absencetype.SelectedItem = AbsenceTypes.Find(x => x.AbsenceTypeId == selectedItem.AbsenceType.AbsenceTypeId);
+                Main_Form.dtp_from.Value = selectedItem.FromDate;
+                Main_Form.dtp_to.Value = selectedItem.ToDate;
+                Main_Form.richtextbox_reason.Text = selectedItem.Reason;
 
                 ToggleInsertOrUpdate(true);
             }
@@ -156,26 +168,26 @@ namespace UrlaubsPlaner.Controller
 
         private void ToggleButtonVisibility(bool visible)
         {
-            txtbx_id.Visible = visible;
-            lbl_id.Visible = visible;
-            btn_clear.Visible = visible;
+            Main_Form.txtbx_id.Visible = visible;
+            Main_Form.lbl_id.Visible = visible;
+            Main_Form.btn_clear.Visible = visible;
         }
 
         private void ClearTextBoxes()
         {
-            txtbx_id.Text = string.Empty;
-            cbx_employee.SelectedItem = null;
-            cbx_employee.Text = string.Empty;
+            Main_Form.txtbx_id.Text = string.Empty;
+            Main_Form.cbx_employee.SelectedItem = null;
+            Main_Form.cbx_employee.Text = string.Empty;
 
-            textbox_firstname.Text = string.Empty;
-            textbox_lastname.Text = string.Empty;
+            Main_Form.textbox_firstname.Text = string.Empty;
+            Main_Form.textbox_lastname.Text = string.Empty;
 
-            cbx_absencetype.SelectedItem = null;
-            cbx_absencetype.Text = string.Empty;
-            richtextbox_reason.Text = string.Empty;
-            dtp_from.Value = (DateTime.Now);
-            dtp_to.Value = (DateTime.Now);
-            listview_event.SelectedItems.Clear();
+            Main_Form.cbx_absencetype.SelectedItem = null;
+            Main_Form.cbx_absencetype.Text = string.Empty;
+            Main_Form.richtextbox_reason.Text = string.Empty;
+            Main_Form.dtp_from.Value = (DateTime.Now);
+            Main_Form.dtp_to.Value = (DateTime.Now);
+            Main_Form.listview_event.SelectedItems.Clear();
         }
 
         private void Button_save_Click(object sender, EventArgs e)
@@ -191,21 +203,21 @@ namespace UrlaubsPlaner.Controller
                 return new Absence()
                 {
                     AbsenceID = Guid.NewGuid(),
-                    AbsenceType = cbx_absencetype.SelectedItem as AbsenceType,
-                    Employee = cbx_employee.SelectedItem as Employee,
-                    FromDate = dtp_from.Value,
-                    ToDate = dtp_to.Value,
-                    Reason = richtextbox_reason.Text
+                    AbsenceType = Main_Form.cbx_absencetype.SelectedItem as AbsenceType,
+                    Employee = Main_Form.cbx_employee.SelectedItem as Employee,
+                    FromDate = Main_Form.dtp_from.Value,
+                    ToDate = Main_Form.dtp_to.Value,
+                    Reason = Main_Form.richtextbox_reason.Text
                 };
             }
             else
             {
-                Absence selected = Absences.Find(x => x.AbsenceID.ToString() == txtbx_id.Text);
-                selected.AbsenceType = cbx_absencetype.SelectedItem as AbsenceType;
-                selected.Employee = cbx_employee.SelectedItem as Employee;
-                selected.FromDate = dtp_from.Value;
-                selected.ToDate = dtp_to.Value;
-                selected.Reason = richtextbox_reason.Text;
+                Absence selected = Absences.Find(x => x.AbsenceID.ToString() == Main_Form.txtbx_id.Text);
+                selected.AbsenceType = Main_Form.cbx_absencetype.SelectedItem as AbsenceType;
+                selected.Employee = Main_Form.cbx_employee.SelectedItem as Employee;
+                selected.FromDate = Main_Form.dtp_from.Value;
+                selected.ToDate = Main_Form.dtp_to.Value;
+                selected.Reason = Main_Form.richtextbox_reason.Text;
                 return selected;
             }
         }
