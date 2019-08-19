@@ -1,4 +1,4 @@
-﻿namespace UrlaubsPlaner
+﻿namespace UrlaubsPlanerForms
 {
     partial class Main_Form
     {
@@ -351,7 +351,7 @@
             this.Controls.Add(this.gp_calendar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Main";
-            this.Text = "Urlaubsplaner";
+            this.Text = "UrlaubsPlanerForms";
             this.gp_calendar.ResumeLayout(false);
             this.gp_input.ResumeLayout(false);
             this.gp_input.PerformLayout();

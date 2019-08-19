@@ -1,4 +1,4 @@
-﻿namespace UrlaubsPlaner
+﻿namespace UrlaubsPlanerForms
 {
     partial class AbsenceType_Form
     {

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using UrlaubsPlaner.DBInteraction;
-using UrlaubsPlaner.Entities;
 
-namespace UrlaubsPlaner
+namespace UrlaubsPlanerForms
 {
     public partial class Employee_Form : Form
     {

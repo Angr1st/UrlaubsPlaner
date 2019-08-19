@@ -7,10 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UrlaubsPlaner.DBInteraction;
-using UrlaubsPlaner.Entities;
 
-namespace UrlaubsPlaner
+namespace UrlaubsPlanerForms
 {
     public partial class Main_Form : Form
     {
