@@ -52,6 +52,9 @@
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />
+    <None Include="SqlScripts\Querys\GetAbsences.sql" />
+    <None Include="SqlScripts\Querys\GetAbsenceView.sql" />
+    <None Include="SqlScripts\Querys\GetAbsenceWhereEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
