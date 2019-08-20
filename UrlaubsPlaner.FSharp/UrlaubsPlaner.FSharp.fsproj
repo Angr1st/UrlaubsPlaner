@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="DBInteraction\DBInteraction.fs" />
+    <Compile Include="DBInteraction\DBInteraction.Querys.fs" />
     <Compile Include="Controllers\Main_FormLogic.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
