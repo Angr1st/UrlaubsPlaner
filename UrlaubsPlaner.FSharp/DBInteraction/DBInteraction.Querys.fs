@@ -7,9 +7,6 @@ module Querys =
     let QueryFolder = SqlScriptsFolder + "Querys\\"
 
     [<Literal>]
-    let DotSQL = ".sql"
-
-    [<Literal>]
     let GetAbsencesLocation = QueryFolder + "GetAbsences" + DotSQL
 
     [<Literal>]

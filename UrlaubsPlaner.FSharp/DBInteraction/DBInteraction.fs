@@ -6,3 +6,6 @@ module DBInteraction =
 
     [<Literal>]
     let SqlScriptsFolder = "SqlScripts\\"
+
+    [<Literal>]
+    let DotSQL = ".sql"
