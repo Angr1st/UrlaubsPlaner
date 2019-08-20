@@ -1,0 +1,26 @@
+INSERT INTO [dbo].[Employee]
+           ([EmployeeID]
+           ,[EmployeeNumber]
+           ,[CountryID]
+           ,[Firstname]
+           ,[Lastname]
+           ,[Birthday]
+           ,[Street]
+           ,[Housenumber]
+           ,[Postalcode]
+           ,[City]
+           ,[Phonenumber]
+           ,[Email])
+     VALUES
+           (@EmployeeID
+           ,@EmployeeNumber
+           ,@Country
+           ,@Firstname
+           ,@Lastname
+           ,@Birthday
+           ,@Street
+           ,@Housenumber
+           ,@Postalcode
+           ,@City
+           ,@Phonenumber
+           ,@Email)
