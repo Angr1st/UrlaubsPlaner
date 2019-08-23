@@ -78,12 +78,24 @@
     <Content Include="SqlScripts\Querys\GetEmployeeView.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="SqlScripts\Inserts\InsertAbsence.sql" />
-    <None Include="SqlScripts\Inserts\InsertAbsenceType.sql" />
-    <None Include="SqlScripts\Inserts\InsertEmployee.sql" />
-    <None Include="SqlScripts\Updates\UpdateAbsence.sql" />
-    <None Include="SqlScripts\Updates\UpdateAbsenceType.sql" />
-    <None Include="SqlScripts\Updates\UpdateEmployee.sql" />
+    <Content Include="SqlScripts\Inserts\InsertAbsence.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\Inserts\InsertAbsenceType.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\Inserts\InsertEmployee.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\Updates\UpdateAbsence.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\Updates\UpdateAbsenceType.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\Updates\UpdateEmployee.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
