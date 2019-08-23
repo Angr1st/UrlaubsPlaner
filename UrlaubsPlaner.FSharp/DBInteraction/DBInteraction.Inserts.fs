@@ -1,6 +1,6 @@
-﻿namespace UrlaubsPlaner.FSharp.DBInteraction
-
+﻿namespace UrlaubsPlaner.FSharp.DB
 open FSharp.Data
+open DBInteraction
 
 module Inserts =
 

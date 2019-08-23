@@ -1,4 +1,4 @@
-﻿namespace UrlaubsPlaner.FSharp
+﻿namespace UrlaubsPlaner.FSharp.DB
 
 module DBInteraction =
     [<Literal>]
