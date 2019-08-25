@@ -40,9 +40,7 @@ module Querys =
         override this.ToString() =
             sprintf "%s - %s" this.Country.Name this.Country.Code
 
-    type employeeSql = SqlFile<GetEmployeesLocation>
-
-    type GetEmployees = SqlCommandProvider<employeeSql.Text,ConnectionString>
+    type GetEmployees = SqlCommandProvider<const SqlFile<GetEmployeesLocation>.Text,ConnectionString>
 
     type Employee_Representation ={Employee:GetEmployees.Record} with
         override this.ToString() =
