@@ -107,6 +107,7 @@ module Main_FormLogic =
             form.cbx_absencetype.SelectedItem <- Data.AbsenceTypes |> Array.find (fun x -> x.AbsenceTypeID = selectedItem.AbsenceTypeID) |> toAbsenceTypeRepr
             form.dtp_from.Value <- selectedItem.FromDate
             form.dtp_to.Value <- selectedItem.ToDate
+            form.richtextbox_reason.Text <- selectedItem.Reason
 
             ToggleInsertOrUpdate form true
 
@@ -114,11 +115,15 @@ module Main_FormLogic =
 
     let stopProgram (form:Main_Form) eventArgs = StopProgram form
 
-    let CbxEmployeeSelectedValueChanged (form:Main_Form) =
-        let cbxAsEmployeeRepr (box:ComboBox) =
-            if (box.SelectedItem :? Employee_Representation) then box.SelectedItem :?> Employee_Representation
-            else failwith "This Combobox should only contain Employee_Representation Objects!"
+    let cbxAsEmployeeRepr (box:ComboBox) =
+        if (box.SelectedItem :? Employee_Representation) then box.SelectedItem :?> Employee_Representation
+        else failwith "This Combobox should only contain Employee_Representation Objects!"
 
+    let cbxAsAbsenceTypeRepr (box:ComboBox) =
+        if (box.SelectedItem :? AbsenceType_Representation) then box.SelectedItem :?> AbsenceType_Representation
+        else failwith "This Combobox should only contain AbsenceType_Representation Objects!"
+
+    let CbxEmployeeSelectedValueChanged (form:Main_Form) =
         match isNull form.cbx_employee.SelectedItem with
         | true -> 
             form.textbox_firstname.Text <- System.String.Empty
@@ -128,14 +133,29 @@ module Main_FormLogic =
             form.textbox_firstname.Text <- employee.Employee.Firstname
             form.textbox_lastname.Text <- employee.Employee.Lastname
 
+    let UpsertAbsence (form:Main_Form) =
+        let absenceTypeId = (cbxAsAbsenceTypeRepr form.cbx_absencetype).AbsenceType.AbsenceTypeID
+        let employeeId = (cbxAsEmployeeRepr form.cbx_employee).Employee.EmployeeID
+
+        let result =
+            match IsInsert with
+            | true ->
+                let insertAbsence = DB.Inserts.insertAbsence DB.DBInteraction.ConnectionString
+                insertAbsence.Execute(System.Guid.NewGuid(), absenceTypeId, employeeId, form.dtp_from.Value, form.dtp_to.Value, form.richtextbox_reason.Text)
+            | false ->
+                let updateAbsence = DB.Updates.updateAbsence DB.DBInteraction.ConnectionString
+                updateAbsence.Execute(absenceTypeId,employeeId,form.dtp_from.Value,form.dtp_to.Value,form.richtextbox_reason.Text,System.Guid.Parse(form.txtbx_id.Text))
+        UpdateAllData form
+
     let registerEvents (form:Main_Form) =
         form.Load.Add(fun evenArgs -> UpdateAllData form )
-        form.button_cancel.Click.Add(fun evenArgs -> StopProgram form)
-        form.btn_clear.Click.Add(fun evenArgs -> ToggleInsertOrUpdate form false)
         form.listview_event.SelectedIndexChanged.Add(fun evenArgs -> ListViewEventIndexChange form)
+        form.btn_clear.Click.Add(fun evenArgs -> ToggleInsertOrUpdate form false)
+        form.cbx_employee.SelectedValueChanged.Add(fun evenArgs -> CbxEmployeeSelectedValueChanged form)
         form.employeebtn.Click.Add(fun evenArgs -> Employee_FormLogic.EmployeeForm.Show())
         form.absenceTypebtn.Click.Add(fun evenArgs -> AbsenceType_FormLogic.AbsenceTypeForm.Show())
-        form.cbx_employee.SelectedValueChanged.Add(fun evenArgs -> CbxEmployeeSelectedValueChanged form)
+        form.button_cancel.Click.Add(fun evenArgs -> StopProgram form)
+        form.button_save.Click.Add(fun evenArgs -> UpsertAbsence form)
 
         let showFormAppl = showForm form
 
