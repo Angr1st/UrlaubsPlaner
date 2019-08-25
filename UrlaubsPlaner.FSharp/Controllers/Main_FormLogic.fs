@@ -114,8 +114,19 @@ module Main_FormLogic =
 
     let stopProgram (form:Main_Form) eventArgs = StopProgram form
 
-    //let CbxEmployeeSelectedValueChanged (form:Main_Form) =
-        
+    let CbxEmployeeSelectedValueChanged (form:Main_Form) =
+        let cbxAsEmployeeRepr (box:ComboBox) =
+            if (box.SelectedItem :? Employee_Representation) then box.SelectedItem :?> Employee_Representation
+            else failwith "This Combobox should only contain Employee_Representation Objects!"
+
+        match isNull form.cbx_employee.SelectedItem with
+        | true -> 
+            form.textbox_firstname.Text <- System.String.Empty
+            form.textbox_lastname.Text <- System.String.Empty
+        | false ->
+            let employee = cbxAsEmployeeRepr form.cbx_employee
+            form.textbox_firstname.Text <- employee.Employee.Firstname
+            form.textbox_lastname.Text <- employee.Employee.Lastname
 
     let registerEvents (form:Main_Form) =
         form.Load.Add(fun evenArgs -> UpdateAllData form )
@@ -124,6 +135,7 @@ module Main_FormLogic =
         form.listview_event.SelectedIndexChanged.Add(fun evenArgs -> ListViewEventIndexChange form)
         form.employeebtn.Click.Add(fun evenArgs -> Employee_FormLogic.EmployeeForm.Show())
         form.absenceTypebtn.Click.Add(fun evenArgs -> AbsenceType_FormLogic.AbsenceTypeForm.Show())
+        form.cbx_employee.SelectedValueChanged.Add(fun evenArgs -> CbxEmployeeSelectedValueChanged form)
 
         let showFormAppl = showForm form
 
