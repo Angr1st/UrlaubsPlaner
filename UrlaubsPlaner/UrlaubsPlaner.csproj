@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AbsenceType_FormController.cs" />
+    <Compile Include="Controller\CommonController.cs" />
     <Compile Include="Controller\Employee_FormController.cs" />
     <Compile Include="Controller\IForm.cs" />
     <Compile Include="Controller\Main_FormController.cs" />

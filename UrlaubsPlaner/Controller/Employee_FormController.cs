@@ -158,14 +158,7 @@ namespace UrlaubsPlaner.Controller
 
         private void ChangeButtonText(bool isInsert)
         {
-            if (isInsert)
-            {
-                Employee_Form.btn_create.Text = "Erstellen";
-            }
-            else
-            {
-                Employee_Form.btn_create.Text = "Aktualisieren";
-            }
+            Employee_Form.btn_create.Text = CommonController.ButtonTextChange(isInsert);
         }
 
         private void Btn_clear_Click(object sender, EventArgs e)
