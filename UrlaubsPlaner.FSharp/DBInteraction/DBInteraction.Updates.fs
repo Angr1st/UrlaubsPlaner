@@ -21,3 +21,9 @@ module Updates =
     type UpdateAbsenceType = SqlCommandProvider<const SqlFile<UpdateAbsenceTypeLocation>.Text,ConnectionString>
 
     type UpdateEmployee = SqlCommandProvider<const SqlFile<UpdateEmployeeLocation>.Text,ConnectionString>
+
+    let updateAbsence (connectionString:string) = new UpdateAbsence(connectionString)
+
+    let updateAbsenceType (connectionString:string) = new UpdateAbsenceType(connectionString)
+
+    let updateEmployee (connectionString:string) = new UpdateEmployee(connectionString)
