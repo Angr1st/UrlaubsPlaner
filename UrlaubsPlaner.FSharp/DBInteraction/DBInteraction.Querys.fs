@@ -35,3 +35,15 @@ module Querys =
     type GetEmployees = SqlCommandProvider<const SqlFile<GetEmployeesLocation>.Text,ConnectionString>
 
     type GetEmployeeView = SqlCommandProvider<const SqlFile<GetEmployeeViewLocation>.Text,ConnectionString>
+
+    let getAbsences (connectionString:string) = new GetAbsences(connectionString)
+
+    let getAbsenceView (connectionString:string) = new GetAbsenceView(connectionString)
+
+    let getAbsenceTypes (connectionString:string) = new GetAbsenceTypes(connectionString)
+
+    let getCountrys (connectionString:string) = new GetCountrys(connectionString)
+
+    let getEmployees (connectionString:string) = new GetEmployees(connectionString)
+
+    let getEmployeeView (connectionString:string) = new GetEmployeeView(connectionString)
