@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UrlaubsPlaner.Controller;
-using UrlaubsPlaner.Entities;
 
 namespace UrlaubsPlaner
 {
     internal static class Program
     {
         private static Main_FormController Main_FormController;
+        private static AbsenceType_FormController AbsenceType_FormController;
+        private static Employee_FormController Employee_FormController;
 
         /// <summary>
         /// The main entry point for the application.
@@ -21,6 +19,9 @@ namespace UrlaubsPlaner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Main_FormController = new Main_FormController();
+            (AbsenceType_FormController, Employee_FormController) = Main_FormController.Initialize();
+
+            Main_FormController.Run();
         }
     }
 }
