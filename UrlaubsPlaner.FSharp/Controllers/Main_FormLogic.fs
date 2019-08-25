@@ -2,6 +2,7 @@
 
 open UrlaubsPlanerForms
 open System.Windows.Forms
+open DB.Querys
 
 type DataStorage_Main = 
     {
@@ -17,6 +18,10 @@ module Main_FormLogic =
     let mutable private Data = {Absences=Array.empty;AbsenceTypes=Array.empty;Employees=Array.empty}
 
     let MainForm = new Main_Form()
+
+    let toAbsenceTypeRepr x = {AbsenceType=x}
+
+    let toEmployeeRepr x = {Employee=x}
 
     let UpdateAllData (form:Main_Form) =
         do form.listview_event.Items.Clear()
@@ -46,11 +51,11 @@ module Main_FormLogic =
 
         form.listview_event.Items.AddRange listViewAbsenceArray
 
-        let upcastToObj x = x :> obj
+        let upcastToObj cast x = cast x :> obj
 
-        let absenceArray = Data.AbsenceTypes |> Array.map upcastToObj
+        let absenceArray = Data.AbsenceTypes |> Array.map (upcastToObj toAbsenceTypeRepr)
 
-        let employeeArray = Data.Employees |> Array.map upcastToObj
+        let employeeArray = Data.Employees |> Array.map (upcastToObj toEmployeeRepr)
 
         form.cbx_absencetype.Items.AddRange absenceArray
 
@@ -98,8 +103,8 @@ module Main_FormLogic =
             let selectedItem = Data.Absences.[index]
 
             form.txtbx_id.Text <- selectedItem.AbsenceID.ToString()
-            form.cbx_employee.SelectedItem <- Data.Employees |> Array.find (fun x -> x.EmployeeID = selectedItem.EmployeeID)
-            form.cbx_absencetype.SelectedItem <- Data.AbsenceTypes |> Array.find (fun x -> x.AbsenceTypeID = selectedItem.AbsenceTypeID)
+            form.cbx_employee.SelectedItem <- Data.Employees |> Array.find (fun x -> x.EmployeeID = selectedItem.EmployeeID) |> toEmployeeRepr
+            form.cbx_absencetype.SelectedItem <- Data.AbsenceTypes |> Array.find (fun x -> x.AbsenceTypeID = selectedItem.AbsenceTypeID) |> toAbsenceTypeRepr
             form.dtp_from.Value <- selectedItem.FromDate
             form.dtp_to.Value <- selectedItem.ToDate
 
@@ -108,6 +113,9 @@ module Main_FormLogic =
     let showForm (form:Main_Form) eventArgs = ShowFormAgain form
 
     let stopProgram (form:Main_Form) eventArgs = StopProgram form
+
+    //let CbxEmployeeSelectedValueChanged (form:Main_Form) =
+        
 
     let registerEvents (form:Main_Form) =
         form.Load.Add(fun evenArgs -> UpdateAllData form )
