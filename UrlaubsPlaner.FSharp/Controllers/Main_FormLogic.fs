@@ -105,10 +105,26 @@ module Main_FormLogic =
 
             ToggleInsertOrUpdate form true
 
+    let showForm (form:Main_Form) eventArgs = ShowFormAgain form
+
+    let stopProgram (form:Main_Form) eventArgs = StopProgram form
 
     let registerEvents (form:Main_Form) =
         form.Load.Add(fun evenArgs -> UpdateAllData form )
         form.button_cancel.Click.Add(fun evenArgs -> StopProgram form)
         form.btn_clear.Click.Add(fun evenArgs -> ToggleInsertOrUpdate form false)
         form.listview_event.SelectedIndexChanged.Add(fun evenArgs -> ListViewEventIndexChange form)
+        form.employeebtn.Click.Add(fun evenArgs -> Employee_FormLogic.EmployeeForm.Show())
+        form.absenceTypebtn.Click.Add(fun evenArgs -> AbsenceType_FormLogic.AbsenceTypeForm.Show())
+
+        let showFormAppl = showForm form
+
+        AbsenceType_FormLogic.AbsenceTypeForm.VisibleChanged.Add showFormAppl
+        Employee_FormLogic.EmployeeForm.VisibleChanged.Add showFormAppl
+        
+        let stopProgramAppl = stopProgram form
+
+        AbsenceType_FormLogic.AbsenceTypeForm.FormClosed.Add stopProgramAppl
+        Employee_FormLogic.EmployeeForm.FormClosed.Add stopProgramAppl
+
         Application.Run(form)
