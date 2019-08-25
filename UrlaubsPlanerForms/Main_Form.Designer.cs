@@ -1,6 +1,6 @@
-﻿namespace UrlaubsPlaner
+﻿namespace UrlaubsPlanerForms
 {
-    partial class Form_Main
+    partial class Main_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.gp_calendar = new System.Windows.Forms.GroupBox();
             this.listview_event = new System.Windows.Forms.ListView();
             this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -92,7 +92,6 @@
             this.listview_event.TabIndex = 0;
             this.listview_event.UseCompatibleStateImageBehavior = false;
             this.listview_event.View = System.Windows.Forms.View.Details;
-            this.listview_event.SelectedIndexChanged += new System.EventHandler(this.Listview_event_SelectedIndexChanged);
             // 
             // Id
             // 
@@ -170,7 +169,6 @@
             this.btn_clear.Text = "Leeren";
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Visible = false;
-            this.btn_clear.Click += new System.EventHandler(this.Btn_clear_Click);
             // 
             // lbl_id
             // 
@@ -198,7 +196,6 @@
             this.cbx_employee.Name = "cbx_employee";
             this.cbx_employee.Size = new System.Drawing.Size(121, 21);
             this.cbx_employee.TabIndex = 18;
-            this.cbx_employee.SelectedValueChanged += new System.EventHandler(this.Cbx_employee_SelectedValueChanged);
             // 
             // cbx_absencetype
             // 
@@ -216,7 +213,6 @@
             this.employeebtn.TabIndex = 16;
             this.employeebtn.Text = "Mitarbeiter";
             this.employeebtn.UseVisualStyleBackColor = true;
-            this.employeebtn.Click += new System.EventHandler(this.Employeebtn_Click);
             // 
             // absenceTypebtn
             // 
@@ -226,7 +222,6 @@
             this.absenceTypebtn.TabIndex = 15;
             this.absenceTypebtn.Text = "Abwesenheits Arten";
             this.absenceTypebtn.UseVisualStyleBackColor = true;
-            this.absenceTypebtn.Click += new System.EventHandler(this.AbsenceTypebtn_Click);
             // 
             // label_absencetype
             // 
@@ -305,7 +300,6 @@
             this.button_cancel.TabIndex = 2;
             this.button_cancel.Text = "Beenden";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
             // button_save
             // 
@@ -315,7 +309,6 @@
             this.button_save.TabIndex = 1;
             this.button_save.Text = "Speichern";
             this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.Button_save_Click);
             // 
             // lbl_from
             // 
@@ -358,8 +351,7 @@
             this.Controls.Add(this.gp_calendar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Main";
-            this.Text = "Urlaubsplaner";
-            this.Load += new System.EventHandler(this.Form_MainLoad);
+            this.Text = "UrlaubsPlanerForms";
             this.gp_calendar.ResumeLayout(false);
             this.gp_input.ResumeLayout(false);
             this.gp_input.PerformLayout();
@@ -374,13 +366,13 @@
         private System.Windows.Forms.Label label_employeeNumber;
         private System.Windows.Forms.Label label_lastname;
         private System.Windows.Forms.Label label_firstname;
-        private System.Windows.Forms.TextBox textbox_lastname;
-        private System.Windows.Forms.TextBox textbox_firstname;
-        private System.Windows.Forms.Button button_cancel;
-        private System.Windows.Forms.Button button_save;
-        private System.Windows.Forms.ListView listview_event;
+        public System.Windows.Forms.TextBox textbox_lastname;
+        public System.Windows.Forms.TextBox textbox_firstname;
+        public System.Windows.Forms.Button button_cancel;
+        public System.Windows.Forms.Button button_save;
+        public System.Windows.Forms.ListView listview_event;
         private System.Windows.Forms.Label label_reason;
-        private System.Windows.Forms.RichTextBox richtextbox_reason;
+        public System.Windows.Forms.RichTextBox richtextbox_reason;
         private System.Windows.Forms.Label label_absencetype;
         private System.Windows.Forms.ColumnHeader Nr;
         private System.Windows.Forms.ColumnHeader Vorname;
@@ -388,18 +380,18 @@
         private System.Windows.Forms.ColumnHeader Typ;
         private System.Windows.Forms.ColumnHeader Von;
         private System.Windows.Forms.ColumnHeader Bis;
-        private System.Windows.Forms.Button employeebtn;
-        private System.Windows.Forms.Button absenceTypebtn;
-        private System.Windows.Forms.ComboBox cbx_absencetype;
-        private System.Windows.Forms.ComboBox cbx_employee;
+        public System.Windows.Forms.Button employeebtn;
+        public System.Windows.Forms.Button absenceTypebtn;
+        public System.Windows.Forms.ComboBox cbx_absencetype;
+        public System.Windows.Forms.ComboBox cbx_employee;
         private System.Windows.Forms.ColumnHeader Id;
-        private System.Windows.Forms.Label lbl_id;
-        private System.Windows.Forms.TextBox txtbx_id;
-        private System.Windows.Forms.Button btn_clear;
-        private System.Windows.Forms.DateTimePicker dtp_from;
+        public System.Windows.Forms.Label lbl_id;
+        public System.Windows.Forms.TextBox txtbx_id;
+        public System.Windows.Forms.Button btn_clear;
+        public System.Windows.Forms.DateTimePicker dtp_from;
         private System.Windows.Forms.Label lbl_to;
         private System.Windows.Forms.Label lbl_from;
-        private System.Windows.Forms.DateTimePicker dtp_to;
+        public System.Windows.Forms.DateTimePicker dtp_to;
     }
 }
 

@@ -57,24 +57,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbsenceType_Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbsenceType_Form.Designer.cs">
-      <DependentUpon>AbsenceType_Form.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Controller\AbsenceType_FormController.cs" />
+    <Compile Include="Controller\CommonController.cs" />
+    <Compile Include="Controller\Employee_FormController.cs" />
+    <Compile Include="Controller\IForm.cs" />
+    <Compile Include="Controller\Main_FormController.cs" />
+    <Compile Include="Controller\UrlaubsPlaner_FormControllerBase.cs" />
     <Compile Include="DBInteraction\AbsenceQuerys.cs" />
     <Compile Include="DBInteraction\AbsenceTypeQuerys.cs" />
     <Compile Include="DBInteraction\CountryQuerys.cs" />
     <Compile Include="DBInteraction\EmployeeQuerys.cs" />
     <Compile Include="DBInteraction\Querys.cs" />
     <Compile Include="DBInteraction\UpsertCommandSetups.cs" />
-    <Compile Include="Employee_Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Employee_Form.Designer.cs">
-      <DependentUpon>Employee_Form.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Absence.cs" />
     <Compile Include="Entities\AbsenceType.cs" />
     <Compile Include="Entities\Country.cs" />
@@ -82,24 +76,9 @@
     <Compile Include="Entities\EntityTransformations.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\IUpsertable.cs" />
-    <Compile Include="Form_Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Main.Designer.cs">
-      <DependentUpon>Form_Main.cs</DependentUpon>
-    </Compile>
     <Compile Include="DBInteraction\DataBaseConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AbsenceType_Form.resx">
-      <DependentUpon>AbsenceType_Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Employee_Form.resx">
-      <DependentUpon>Employee_Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Main.resx">
-      <DependentUpon>Form_Main.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -123,9 +102,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Dapino-Summer-Holiday-Palm-tree.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp">
       <Version>4.5.0</Version>
     </PackageReference>
@@ -133,6 +109,11 @@
       <Version>4.6.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\UrlaubsPlanerForms\UrlaubsPlanerForms.csproj">
+      <Project>{8bc3c217-d584-44f5-8262-1d2121a3c54b}</Project>
+      <Name>UrlaubsPlanerForms</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

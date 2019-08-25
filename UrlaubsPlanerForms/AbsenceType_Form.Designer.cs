@@ -1,4 +1,4 @@
-﻿namespace UrlaubsPlaner
+﻿namespace UrlaubsPlanerForms
 {
     partial class AbsenceType_Form
     {
@@ -57,7 +57,6 @@
             this.absenceTypeListView.TabIndex = 0;
             this.absenceTypeListView.UseCompatibleStateImageBehavior = false;
             this.absenceTypeListView.View = System.Windows.Forms.View.Details;
-            this.absenceTypeListView.SelectedIndexChanged += new System.EventHandler(this.AbsenceTypeListView_SelectedIndexChanged);
             // 
             // absenceTypeID
             // 
@@ -92,7 +91,6 @@
             this.createButton.TabIndex = 2;
             this.createButton.Text = "Erstellen";
             this.createButton.UseVisualStyleBackColor = true;
-            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // absenceTypeLabel
             // 
@@ -118,7 +116,6 @@
             this.cancelBtn.TabIndex = 2;
             this.cancelBtn.Text = "Abbrechen";
             this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // btn_clear
             // 
@@ -129,7 +126,6 @@
             this.btn_clear.Text = "Leeren";
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Visible = false;
-            this.btn_clear.Click += new System.EventHandler(this.Btn_clear_Click);
             // 
             // txbx_id
             // 
@@ -161,7 +157,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AbsenceType_Form";
             this.Text = "AbsenceType_Form";
-            this.Load += new System.EventHandler(this.AbsenceType_Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -170,16 +165,16 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView absenceTypeListView;
+        public System.Windows.Forms.ListView absenceTypeListView;
         private System.Windows.Forms.ColumnHeader absenceTypeID;
         private System.Windows.Forms.ColumnHeader label;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button createButton;
+        public System.Windows.Forms.Button createButton;
         private System.Windows.Forms.Label absenceTypeLabel;
-        private System.Windows.Forms.TextBox absenceType_Label;
-        private System.Windows.Forms.Button cancelBtn;
-        private System.Windows.Forms.Button btn_clear;
-        private System.Windows.Forms.Label lb_Id;
-        private System.Windows.Forms.TextBox txbx_id;
+        public System.Windows.Forms.TextBox absenceType_Label;
+        public System.Windows.Forms.Button cancelBtn;
+        public System.Windows.Forms.Button btn_clear;
+        public System.Windows.Forms.Label lb_Id;
+        public System.Windows.Forms.TextBox txbx_id;
     }
 }
