@@ -165,8 +165,4 @@ module Main_FormLogic =
         let stopProgramAppl = stopProgram form
 
         AbsenceType_FormLogic.AbsenceTypeForm.FormClosed.Add stopProgramAppl
-        Employee_FormLogic.EmployeeForm.FormClosed.Add stopProgramAppl
-
-        AbsenceType_FormLogic.registerEvents AbsenceType_FormLogic.AbsenceTypeForm
-
-        Application.Run(form)
+        Employee_FormLogic.EmployeeForm.FormClosed.Add stopProgramAppl       

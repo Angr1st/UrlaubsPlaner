@@ -9,5 +9,9 @@ module Main =
     let main argv = 
         Application.EnableVisualStyles()
         Application.SetCompatibleTextRenderingDefault(false)
+        
         Main_FormLogic.registerEvents Main_FormLogic.MainForm
+        AbsenceType_FormLogic.registerEvents AbsenceType_FormLogic.AbsenceTypeForm
+        
+        Application.Run(Main_FormLogic.MainForm)
         0 // return an integer exit code
