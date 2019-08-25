@@ -2,6 +2,7 @@
 
 open UrlaubsPlanerForms
 open DB.Querys
+open System.Windows.Forms
 
 module Employee_FormLogic =
 
@@ -13,7 +14,7 @@ module Employee_FormLogic =
 
     let toCountryRepr x = {Country=x}
 
-    let mutable private IsInsert = false
+    let mutable private IsInsert = true
 
     let mutable private Data = 
         let getCountries = DB.Querys.getCountrys DB.DBInteraction.ConnectionString
@@ -62,9 +63,9 @@ module Employee_FormLogic =
 
         form.btn_create.Text <- Common_Logic.ChangeButtonText <| not visible
 
-        match not IsInsert with
-        | false -> ()
-        | true ->
+        match visible with
+        | true -> ()
+        | false ->
             form.txtbx_id.Text <- System.String.Empty
             form.txtbx_city.Text <- System.String.Empty
             form.txtbx_email.Text <- System.String.Empty
@@ -97,11 +98,29 @@ module Employee_FormLogic =
             form.dtm_birthday.Value <- selectedItem.Birthday |> Option.defaultValue System.DateTime.Now
             form.cbx_country.SelectedItem <- Data.Countries |> Array.find (fun x -> x.CountryID = selectedItem.CountryID) |> toCountryRepr
 
+            ToggleInsertOrUpdate form true
 
+    let cbxAsCountryRepr (box:ComboBox) =
+        if (box.SelectedItem :? Country_Representation) then box.SelectedItem :?> Country_Representation
+        else failwith "This Combobox should only contain AbsenceType_Representation Objects!"
+
+    let UpsertData (form:Employee_Form) =
+        let countryId = (cbxAsCountryRepr form.cbx_country).Country.CountryID
+
+        let result =
+            match IsInsert with
+            | true ->
+                let insertEmployee = DB.Inserts.insertEmployee DB.DBInteraction.ConnectionString
+                insertEmployee.Execute(System.Guid.NewGuid(),Data.Employees.Length + 1,countryId,form.txtbx_firstname.Text,form.txtbx_lastname.Text,form.dtm_birthday.Value,form.txtbx_street.Text,form.txtbx_housenumber.Text,form.txtbx_postalcode.Text,form.txtbx_city.Text,form.txtbx_telefonnumber.Text,form.txtbx_email.Text)
+            | false ->
+                let updateEmployee = DB.Updates.updateEmployee DB.DBInteraction.ConnectionString
+                updateEmployee.Execute(form.txtbx_number.Text |> int,countryId,form.txtbx_firstname.Text,form.txtbx_lastname.Text,form.dtm_birthday.Value,form.txtbx_street.Text,form.txtbx_housenumber.Text,form.txtbx_postalcode.Text,form.txtbx_city.Text,form.txtbx_telefonnumber.Text,form.txtbx_email.Text,System.Guid.Parse(form.txtbx_id.Text))
+
+        UpdateData form
 
     let registerEvents (form:Employee_Form) =
         form.Load.Add(fun evenArgs -> UpdateData form)
         form.btn_clear.Click.Add(fun evenArgs -> ToggleInsertOrUpdate form false)
-        //form.btn_create.Click.Add(fun evenArgs -> )
+        form.btn_create.Click.Add(fun evenArgs -> UpsertData form)
         form.cancelbtn.Click.Add(fun evenArgs -> form.Hide())
         form.employeeListView.SelectedIndexChanged.Add(fun evenArgs -> ListViewEmployeeSelectedIndexChanged form)
