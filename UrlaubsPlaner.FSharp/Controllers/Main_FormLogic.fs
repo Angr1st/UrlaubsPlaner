@@ -51,11 +51,9 @@ module Main_FormLogic =
 
         form.listview_event.Items.AddRange listViewAbsenceArray
 
-        let upcastToObj cast x = cast x :> obj
+        let absenceArray = Data.AbsenceTypes |> Array.map (Common_Logic.UpcastToObj toAbsenceTypeRepr)
 
-        let absenceArray = Data.AbsenceTypes |> Array.map (upcastToObj toAbsenceTypeRepr)
-
-        let employeeArray = Data.Employees |> Array.map (upcastToObj toEmployeeRepr)
+        let employeeArray = Data.Employees |> Array.map (Common_Logic.UpcastToObj toEmployeeRepr)
 
         form.cbx_absencetype.Items.AddRange absenceArray
 
