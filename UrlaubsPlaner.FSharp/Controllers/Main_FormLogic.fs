@@ -4,14 +4,14 @@ open UrlaubsPlanerForms
 open System.Windows.Forms
 open DB.Querys
 
-type DataStorage_Main = 
-    {
-        Absences:DB.Querys.GetAbsenceView.Record array
-        AbsenceTypes:DB.Querys.GetAbsenceTypes.Record array
-        Employees:DB.Querys.GetEmployees.Record array
-    }
-
 module Main_FormLogic =
+
+    type DataStorage_Main = 
+        {
+            Absences:DB.Querys.GetAbsenceView.Record array
+            AbsenceTypes:DB.Querys.GetAbsenceTypes.Record array
+            Employees:DB.Querys.GetEmployees.Record array
+        }
 
     let mutable private IsInsert = true
 
