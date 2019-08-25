@@ -21,3 +21,9 @@ module Inserts =
     type InsertAbsenceType = SqlCommandProvider<const SqlFile<InsertAbsenceTypeLocation>.Text,ConnectionString>
 
     type InsertEmployee = SqlCommandProvider<const SqlFile<InsertEmployeeLocation>.Text,ConnectionString>
+
+    let insertAbsence (connectionString:string) = new InsertAbsence(connectionString)
+
+    let insertAbsenceType (connectionString:string) = new InsertAbsenceType(connectionString)
+
+    let insertEmployee (connectionString:string) = new InsertEmployee(connectionString)
