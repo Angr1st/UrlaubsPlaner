@@ -30,9 +30,23 @@ module Querys =
 
     type GetAbsenceTypes = SqlCommandProvider<const SqlFile<GetAbsenceTypesLocation>.Text,ConnectionString>
 
+    type GetAbsenceTypes.Record with
+        member this.ToString() =
+            this.Label
+
     type GetCountrys = SqlCommandProvider<const SqlFile<GetCountrysLocation>.Text,ConnectionString>
 
-    type GetEmployees = SqlCommandProvider<const SqlFile<GetEmployeesLocation>.Text,ConnectionString>
+    type GetCountrys.Record with
+        member this.ToString() =
+            sprintf "%s - %s" this.Name this.Code
+
+    type employeeSql = SqlFile<GetEmployeesLocation>
+
+    type GetEmployees = SqlCommandProvider<employeeSql.Text,ConnectionString>
+
+    type GetEmployees.Record with
+        member this.ToString() =
+            sprintf "%i - %s" this.EmployeeNumber this.Lastname
 
     type GetEmployeeView = SqlCommandProvider<const SqlFile<GetEmployeeViewLocation>.Text,ConnectionString>
 
