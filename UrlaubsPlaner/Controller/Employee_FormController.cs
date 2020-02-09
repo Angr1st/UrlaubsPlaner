@@ -72,7 +72,7 @@ namespace UrlaubsPlaner.Controller
                     Country = Employee_Form.cbx_country.SelectedItem as Country,
                     Email = Employee_Form.txtbx_email.Text,
                     EmployeeId = Guid.NewGuid(),
-                    EmployeeNumber = Employees.Max(x => x.EmployeeNumber) + 1,
+                    EmployeeNumber = Employees.Count == 0 ? 1 : Employees.Max(x => x.EmployeeNumber) + 1,
                     Firstname = Employee_Form.txtbx_firstname.Text,
                     Housenumber = Employee_Form.txtbx_housenumber.Text,
                     Lastname = Employee_Form.txtbx_lastname.Text,
