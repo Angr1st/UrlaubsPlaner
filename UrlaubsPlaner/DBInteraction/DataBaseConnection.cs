@@ -184,7 +184,7 @@ namespace UrlaubsPlaner.DBInteraction
             where T : IUpsertable
         {
             var preparedCmd = sqlcmdParameterSetup(sqlCommand, data);
-            sqlCommand.Connection = SqlConnection;
+            preparedCmd.Connection = SqlConnection;
             if (!IsConnectionOpen)
             {
                 SqlConnection.Open();
